@@ -1,9 +1,9 @@
 export const Botao = ({ children, onClick, variant = "primary", className = "", type = "button" }) => {
-  const baseStyle = "px-4 py-2 rounded-lg font-medium transition-all flex items-center justify-center gap-2";
+  const baseStyle = "px-4 py-2.5 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95";
   const variants = {
-    primary: "bg-amber-500 hover:bg-amber-600 text-zinc-900 font-bold",
-    secondary: "bg-zinc-700 hover:bg-zinc-600 text-zinc-100",
-    danger: "bg-red-600 hover:bg-red-700 text-white"
+    primary: "bg-rose-700 hover:bg-rose-600 text-white font-bold shadow-rose-950/50",
+    secondary: "bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700",
+    danger: "bg-red-800 hover:bg-red-700 text-white"
   };
 
   return (

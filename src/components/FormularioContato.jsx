@@ -39,61 +39,61 @@ export const FormularioContato = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-zinc-800 p-6 rounded-xl border border-zinc-700 max-w-lg mx-auto shadow-xl">
-      <h2 className="text-2xl font-bold text-amber-500 mb-6 text-center">Fale com a Groove</h2>
+    <form onSubmit={handleSubmit} className="bg-rose-950/50 p-8 rounded-2xl border border-rose-900/50 max-w-lg mx-auto shadow-2xl backdrop-blur-sm my-8">
+      <h2 className="text-2xl font-black text-rose-300 mb-6 text-center">Fale com a Vinho & Vinil</h2>
 
       {sucesso && (
-        <div className="mb-4 p-3 bg-green-900/50 border border-green-500 text-green-200 rounded-lg text-sm text-center">
-          Mensagem enviada com sucesso! Em breve entraremos em contato.
+        <div className="mb-6 p-4 bg-emerald-950/60 border border-emerald-500/50 text-emerald-200 rounded-xl text-sm text-center">
+          Mensagem enviada com sucesso! Logo entraremos em contato.
         </div>
       )}
 
       <div className="mb-4">
-        <label className="block text-zinc-300 text-sm font-medium mb-1">Nome</label>
+        <label className="block text-rose-200 text-sm font-medium mb-1.5">Nome</label>
         <div className="relative">
-          <FaUser className="absolute left-3 top-3 text-zinc-500" />
+          <FaUser className="absolute left-3.5 top-3.5 text-rose-500" />
           <input
             type="text"
             name="nome"
             value={formData.nome}
             onChange={handleChange}
-            className="w-full pl-10 pr-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-zinc-100 focus:outline-none focus:border-amber-500"
+            className="w-full pl-10 pr-4 py-2.5 bg-rose-950/80 border border-rose-900/80 rounded-xl text-rose-100 placeholder-rose-700 focus:outline-none focus:border-rose-500"
             placeholder="Seu nome completo"
           />
         </div>
-        {erros.nome && <span className="text-red-400 text-xs mt-1 block">{erros.nome}</span>}
+        {erros.nome && <span className="text-rose-400 text-xs mt-1 block">{erros.nome}</span>}
       </div>
 
       <div className="mb-4">
-        <label className="block text-zinc-300 text-sm font-medium mb-1">E-mail</label>
+        <label className="block text-rose-200 text-sm font-medium mb-1.5">E-mail</label>
         <div className="relative">
-          <FaEnvelope className="absolute left-3 top-3 text-zinc-500" />
+          <FaEnvelope className="absolute left-3.5 top-3.5 text-rose-500" />
           <input
             type="text"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full pl-10 pr-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-zinc-100 focus:outline-none focus:border-amber-500"
+            className="w-full pl-10 pr-4 py-2.5 bg-rose-950/80 border border-rose-900/80 rounded-xl text-rose-100 placeholder-rose-700 focus:outline-none focus:border-rose-500"
             placeholder="seu@email.com"
           />
         </div>
-        {erros.email && <span className="text-red-400 text-xs mt-1 block">{erros.email}</span>}
+        {erros.email && <span className="text-rose-400 text-xs mt-1 block">{erros.email}</span>}
       </div>
 
       <div className="mb-6">
-        <label className="block text-zinc-300 text-sm font-medium mb-1">Mensagem</label>
+        <label className="block text-rose-200 text-sm font-medium mb-1.5">Mensagem</label>
         <div className="relative">
-          <FaComment className="absolute left-3 top-3 text-zinc-500" />
+          <FaComment className="absolute left-3.5 top-3.5 text-rose-500" />
           <textarea
             name="mensagem"
             rows="4"
             value={formData.mensagem}
             onChange={handleChange}
-            className="w-full pl-10 pr-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-zinc-100 focus:outline-none focus:border-amber-500"
-            placeholder="Dúvidas, sugestões ou pedido especial..."
+            className="w-full pl-10 pr-4 py-2.5 bg-rose-950/80 border border-rose-900/80 rounded-xl text-rose-100 placeholder-rose-700 focus:outline-none focus:border-rose-500"
+            placeholder="Música favorita, edições especiais ou dúvidas..."
           />
         </div>
-        {erros.mensagem && <span className="text-red-400 text-xs mt-1 block">{erros.mensagem}</span>}
+        {erros.mensagem && <span className="text-rose-400 text-xs mt-1 block">{erros.mensagem}</span>}
       </div>
 
       <Botao type="submit" className="w-full">

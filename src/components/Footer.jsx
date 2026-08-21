@@ -1,16 +1,16 @@
-import { FaHeart, FaInstagram, FaTwitter, FaFacebook } from 'react-icons/fa';
+import { FaHeart, FaInstagram, FaTwitter, FaSpotify } from 'react-icons/fa';
 
 export const Footer = () => {
   return (
-    <footer className="bg-zinc-900 text-zinc-400 py-6 mt-12 border-t border-zinc-800">
+    <footer className="bg-rose-950/80 text-rose-300 py-8 mt-16 border-t border-rose-900/40">
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-sm flex items-center gap-1">
-          Feito com <FaHeart className="text-red-500" /> para colecionadores de vinil.
+        <p className="text-sm flex items-center gap-1.5 font-medium">
+          Feito pela Bia e Julia lindas.
         </p>
-        <div className="flex gap-4 text-lg">
-          <FaInstagram className="hover:text-amber-500 cursor-pointer" />
-          <FaTwitter className="hover:text-amber-500 cursor-pointer" />
-          <FaFacebook className="hover:text-amber-500 cursor-pointer" />
+        <div className="flex gap-5 text-xl">
+          <FaInstagram className="hover:text-rose-400 cursor-pointer transition-colors" />
+          <FaTwitter className="hover:text-rose-400 cursor-pointer transition-colors" />
+          <FaSpotify className="hover:text-rose-400 cursor-pointer transition-colors" />
         </div>
       </div>
     </footer>
