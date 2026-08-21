@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { CardProduto } from './components/CardProduto';
 import { FormularioContato } from './components/FormularioContato';
 import { vinis } from './data/produtos';
-import { FaSearch, FaTrash, FaCheckCircle } from 'react-icons/fa';
+import { FaSearch, FaTrash, FaCheckCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Botao } from './components/Botao';
 
 export default function App() {
@@ -12,6 +12,9 @@ export default function App() {
   const [busca, setBusca] = useState('');
   const [generoFiltro, setGeneroFiltro] = useState('Todos');
   const [carrinho, setCarrinho] = useState([]);
+  
+  // Referência para controlar o Scroll dos Filtros
+  const filtrosRef = useRef(null);
 
   const generos = ['Todos', ...new Set(vinis.map((v) => v.genero))];
 
@@ -30,6 +33,14 @@ export default function App() {
       setCarrinho(carrinho.filter((item) => item.id !== produto.id));
     } else {
       setCarrinho([...carrinho, produto]);
+    }
+  };
+
+  // Função para mover o carrossel de gêneros
+  const rolarFiltro = (direcao) => {
+    if (filtrosRef.current) {
+      const scrollAmount = direcao === 'esquerda' ? -250 : 250;
+      filtrosRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
@@ -54,9 +65,11 @@ export default function App() {
               </p>
             </div>
 
-            {/* Controles de Busca e Filtro */}
-            <div className="flex flex-col md:flex-row gap-4 mb-8 justify-between items-center bg-zinc-900/80 p-4 rounded-2xl border border-zinc-800">
-              <div className="relative w-full md:w-1/2">
+            {/* Controles de Busca e Filtro Organizados em Duas Linhas */}
+            <div className="flex flex-col gap-4 mb-8 bg-zinc-900/80 p-4 rounded-2xl border border-zinc-800">
+              
+              {/* Linha 1: Campo de Busca com largura total */}
+              <div className="relative w-full">
                 <FaSearch className="absolute left-3.5 top-3.5 text-rose-500" />
                 <input
                   type="text"
@@ -67,21 +80,44 @@ export default function App() {
                 />
               </div>
 
-              <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
-                {generos.map((gen) => (
-                  <button
-                    key={gen}
-                    onClick={() => setGeneroFiltro(gen)}
-                    className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
-                      generoFiltro === gen
-                        ? 'bg-rose-700 text-white shadow-lg shadow-rose-950'
-                        : 'bg-zinc-950 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
-                    }`}
-                  >
-                    {gen}
-                  </button>
-                ))}
+              {/* Linha 2: Filtros de Gênero com Setas sem Espremer */}
+              <div className="relative flex items-center w-full gap-2">
+                <button 
+                  onClick={() => rolarFiltro('esquerda')} 
+                  className="p-2.5 bg-zinc-950 text-rose-500 rounded-xl border border-zinc-800 hover:bg-zinc-800 transition-all shrink-0 z-10"
+                  aria-label="Rolar para esquerda"
+                >
+                  <FaChevronLeft size={14} />
+                </button>
+
+                <div 
+                  ref={filtrosRef}
+                  className="flex gap-2 overflow-x-auto scroll-smooth w-full py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                >
+                  {generos.map((gen) => (
+                    <button
+                      key={gen}
+                      onClick={() => setGeneroFiltro(gen)}
+                      className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap shrink-0 ${
+                        generoFiltro === gen
+                          ? 'bg-rose-700 text-white shadow-lg shadow-rose-950'
+                          : 'bg-zinc-950 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
+                      }`}
+                    >
+                      {gen}
+                    </button>
+                  ))}
+                </div>
+
+                <button 
+                  onClick={() => rolarFiltro('direita')} 
+                  className="p-2.5 bg-zinc-950 text-rose-500 rounded-xl border border-zinc-800 hover:bg-zinc-800 transition-all shrink-0 z-10"
+                  aria-label="Rolar para direita"
+                >
+                  <FaChevronRight size={14} />
+                </button>
               </div>
+
             </div>
 
             {/* Grid de Produtos */}
